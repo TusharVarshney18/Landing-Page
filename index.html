@@ -24,6 +24,7 @@
       name="twitter:image"
       content="https://images.alphacoders.com/133/thumb-1920-1338019.webp"
     />
+    <meta name="robots" content="noindex" />
 
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -108,12 +109,15 @@
       <div class="carousel-container">
         <div class="enemies-grid">
           <div class="enemy-card">
-            <video autoplay muted loop playsinline>
-              <source
-                src="./assets/muzan.mp4"
-                type="video/mp4"
-                alt="Muzan Kibutsuji"
-              />
+            <video
+              loading="lazy"
+              muted
+              loop
+              playsinline
+              preload="none"
+              poster="./assets/placeholder.jpg"
+            >
+              <source src="./assets/muzan.mp4" type="video/mp4" />
             </video>
 
             <h3>Muzan Kibutsuji</h3>
@@ -121,7 +125,14 @@
           </div>
 
           <div class="enemy-card">
-            <video autoplay muted loop playsinline>
+            <video
+              loading="lazy"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="none"
+            >
               <source src="./assets//akaza.mp4" type="video/mp4" alt="Akaza" />
             </video>
 
@@ -130,7 +141,14 @@
           </div>
 
           <div class="enemy-card">
-            <video autoplay muted loop playsinline>
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="none"
+              loading="lazy"
+            >
               <source src="./assets/doma.mp4" type="video/mp4" alt="Doma" />
             </video>
 
@@ -143,6 +161,8 @@
               <source
                 src="./assets/kokushibo.mp4"
                 type="video/mp4"
+                preload="none"
+                loading="lazy"
                 alt="kokushibo"
               />
             </video>
@@ -153,7 +173,14 @@
             </p>
           </div>
           <div class="enemy-card">
-            <video autoplay muted loop playsinline>
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="none"
+              loading="lazy"
+            >
               <source src="./assets/no4.mp4" type="video/mp4" />
             </video>
             <h3>Hantengu (Upper Moon Four)</h3>
@@ -176,6 +203,6 @@
     </footer>
 
     <script src="images.js"></script>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
   </body>
 </html>
