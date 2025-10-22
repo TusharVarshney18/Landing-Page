@@ -1,12 +1,6 @@
-//navbar
-// ⚔️ Navbar GSAP Animation
+// ✅ Navbar Animation
 window.addEventListener("load", () => {
-   gsap.to(".navbar", {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      ease: "power4.out",
-   });
+   gsap.to(".navbar", { y: 0, opacity: 1, duration: 1, ease: "power4.out" });
 
    gsap.from(".nav-links a", {
       y: -30,
@@ -18,32 +12,23 @@ window.addEventListener("load", () => {
    });
 });
 
-// 🍔 Toggle Menu
+// 🍔 Toggle Mobile Menu
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.querySelector(".nav-links");
-
-menuToggle.addEventListener("click", () => {
+menuToggle?.addEventListener("click", () => {
    menuToggle.classList.toggle("active");
    navLinks.classList.toggle("active");
 });
 
-// 🩸 Scroll effect for navbar
+// 🩸 Scroll Navbar Effect
 window.addEventListener("scroll", () => {
    const navbar = document.querySelector(".navbar");
-   if (window.scrollY > 80) {
-      navbar.classList.add("scrolled");
-   } else {
-      navbar.classList.remove("scrolled");
-   }
+   if (window.scrollY > 80) navbar.classList.add("scrolled");
+   else navbar.classList.remove("scrolled");
 });
 
-
-
-
-
-
-
-window.demonSlayerImages = [
+// 🖼️ Demon Slayer Gallery
+const demonSlayerImages = [
    "https://4kwallpapers.com/images/walls/thumbs_2t/23652.jpg",
    "https://4kwallpapers.com/images/walls/thumbs_2t/23653.jpg",
    "https://4kwallpapers.com/images/walls/thumbs_2t/23651.jpg",
@@ -57,20 +42,21 @@ window.demonSlayerImages = [
 
 gsap.registerPlugin(ScrollTrigger);
 
-// 🩸 Add images dynamically
 const gallery = document.getElementById("gallery");
-window.demonSlayerImages.forEach((url) => {
-   const div = document.createElement("div");
-   div.className = "gallery-item";
-   div.innerHTML = `<img src="${url}" alt="Demon Slayer Scene" />`;
-   gallery.appendChild(div);
-});
+if (gallery) {
+   demonSlayerImages.forEach((url) => {
+      const div = document.createElement("div");
+      div.className = "gallery-item";
+      div.innerHTML = `<img src="${url}" alt="Demon Slayer Scene" loading="lazy" />`;
+      gallery.appendChild(div);
+   });
+}
 
-// 🔥 Hero animations
+// 🎬 Hero Animation
 gsap.from(".hero-title", { opacity: 0, y: 50, duration: 1.2, ease: "power3.out" });
 gsap.from(".hero-btn", { opacity: 0, scale: 0.8, delay: 0.8, duration: 1 });
 
-// ⚔️ Scroll-triggered gallery animations
+// 📸 Scroll Animation for Gallery
 gsap.from(".gallery-item", {
    scrollTrigger: {
       trigger: ".gallery-section",
@@ -88,36 +74,24 @@ const modal = document.getElementById("previewModal");
 const modalImg = document.getElementById("previewImage");
 const closeModal = document.getElementById("closeModal");
 
-document.querySelectorAll(".gallery-item img").forEach((img) => {
-   img.addEventListener("click", () => {
+document.addEventListener("click", (e) => {
+   if (e.target.matches(".gallery-item img")) {
       modal.style.display = "flex";
-      modalImg.src = img.src;
-      gsap.fromTo(
-         modalImg,
-         { scale: 0.8, opacity: 0 },
-         { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
-      );
-   });
+      modalImg.src = e.target.src;
+      gsap.fromTo(modalImg, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" });
+   } else if (e.target === closeModal || e.target === modal) {
+      gsap.to(modal, {
+         opacity: 0,
+         duration: 0.3,
+         onComplete: () => {
+            modal.style.display = "none";
+            modal.style.opacity = 1;
+         },
+      });
+   }
 });
 
-closeModal.addEventListener("click", () => {
-   gsap.to(modal, {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: () => {
-         modal.style.display = "none";
-         modal.style.opacity = 1;
-      },
-   });
-});
-
-// Close modal on background click
-modal.addEventListener("click", (e) => {
-   if (e.target === modal) closeModal.click();
-});
-
-
-// 🔥 Fire Blade Intro Animation
+// 🔥 Fire Blade Intro
 window.addEventListener("load", () => {
    const tl = gsap.timeline({
       onComplete: () => {
@@ -125,7 +99,7 @@ window.addEventListener("load", () => {
             opacity: 0,
             duration: 1,
             delay: 0.3,
-            onComplete: () => document.getElementById("fireIntro").remove(),
+            onComplete: () => document.getElementById("fireIntro")?.remove(),
          });
       },
    });
@@ -133,30 +107,26 @@ window.addEventListener("load", () => {
    const fireSlash = document.querySelector(".fire-slash");
    const sound = document.getElementById("slashSound");
 
-   // Play sound when slash starts
-   tl.to(fireSlash, {
-      width: "100%",
-      duration: 0.6,
-      ease: "power4.out",
-      onStart: () => {
-         sound.currentTime = 0;
-         sound.play().catch(() => { });
-         createEmbers(20);
-      },
-   })
-      .to(fireSlash, {
-         rotate: 10,
-         scaleY: 10,
-         opacity: 0,
-         duration: 0.3,
-         ease: "power2.inOut",
+   if (fireSlash && sound) {
+      tl.to(fireSlash, {
+         width: "100%",
+         duration: 0.6,
+         ease: "power4.out",
+         onStart: () => {
+            sound.currentTime = 0;
+            sound.play().catch(() => { });
+            createEmbers(20);
+         },
       })
-      .to(fireSlash, { opacity: 0, duration: 0.3 });
+         .to(fireSlash, { rotate: 10, scaleY: 10, opacity: 0, duration: 0.3, ease: "power2.inOut" })
+         .to(fireSlash, { opacity: 0, duration: 0.3 });
+   }
 });
 
-// 🔥 Random ember particles
+// 🧨 Ember Generator
 function createEmbers(count) {
    const container = document.getElementById("fireIntro");
+   if (!container) return;
    for (let i = 0; i < count; i++) {
       const ember = document.createElement("div");
       ember.classList.add("ember");
@@ -169,13 +139,9 @@ function createEmbers(count) {
    }
 }
 
-
-
+// ⚔️ Slayer Section Animation
 gsap.from(".slayer-card", {
-   scrollTrigger: {
-      trigger: ".slayer-section",
-      start: "top 85%",
-   },
+   scrollTrigger: { trigger: ".slayer-section", start: "top 85%" },
    opacity: 0,
    y: 100,
    stagger: 0.2,
@@ -183,16 +149,11 @@ gsap.from(".slayer-card", {
    ease: "power3.out",
 });
 
-
-
-// 🌌 Scroll Reactive Embers (Mugen Train vibe)
-gsap.registerPlugin(ScrollTrigger);
-
-let emberContainer = document.createElement("div");
+// 🌌 Scrolling Embers
+const emberContainer = document.createElement("div");
 emberContainer.classList.add("scroll-embers");
 document.body.appendChild(emberContainer);
 
-// Create random floating embers
 function spawnScrollEmbers() {
    for (let i = 0; i < 8; i++) {
       const ember = document.createElement("div");
@@ -200,7 +161,6 @@ function spawnScrollEmbers() {
       ember.style.left = Math.random() * 100 + "vw";
       ember.style.top = 100 + Math.random() * 50 + "vh";
       emberContainer.appendChild(ember);
-
       gsap.to(ember, {
          y: -200 - Math.random() * 100,
          x: Math.random() * 30 - 15,
@@ -212,27 +172,18 @@ function spawnScrollEmbers() {
    }
 }
 
-// Trigger embers as you scroll
 ScrollTrigger.create({
    trigger: document.body,
    start: "top top",
    end: "bottom bottom",
    onUpdate: (self) => {
-      if (self.direction === 1) {
-         spawnScrollEmbers();
-      }
+      if (self.direction === 1) spawnScrollEmbers();
    },
 });
 
-
-
-
-
+// 💀 About Section Animation
 gsap.from(".about-content", {
-   scrollTrigger: {
-      trigger: ".about-section",
-      start: "top 80%",
-   },
+   scrollTrigger: { trigger: ".about-section", start: "top 80%" },
    opacity: 0,
    x: -100,
    duration: 1.5,
@@ -240,10 +191,7 @@ gsap.from(".about-content", {
 });
 
 gsap.from(".about-image", {
-   scrollTrigger: {
-      trigger: ".about-section",
-      start: "top 80%",
-   },
+   scrollTrigger: { trigger: ".about-section", start: "top 80%" },
    opacity: 0,
    x: 100,
    duration: 1.5,
@@ -252,27 +200,20 @@ gsap.from(".about-image", {
 
 
 
+// 🎥 Lazy Load Videos (fixed version)
+document.addEventListener("DOMContentLoaded", () => {
+   const lazyVideos = document.querySelectorAll("video[data-src]");
+   const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+         if (entry.isIntersecting) {
+            const video = entry.target;
+            if (!video.src) video.src = video.dataset.src;
+            video.load();
+            obs.unobserve(video);
+         }
+      });
+   }, { threshold: 0.25 });
 
-// 👹 Demon Enemies Carousel Animation
-gsap.to(".enemies-grid", {
-   xPercent: -100,
-   repeat: -1,
-   duration: 40,
-   ease: "linear",
-   modifiers: {
-      xPercent: gsap.utils.wrap(-100, 0),
-   },
+   lazyVideos.forEach((video) => observer.observe(video));
 });
 
-
-// 👁️ Scroll-triggered fade-in
-gsap.from(".enemies-section .enemy-card", {
-   opacity: 0,
-   y: 100,
-   stagger: 0.3,
-   duration: 1,
-   scrollTrigger: {
-      trigger: ".enemies-section",
-      start: "top 80%",
-   },
-});

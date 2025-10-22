@@ -1,19 +1,23 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demon Slayer Landing</title>
-    <link rel="icon" href="./assets/fevicon.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css" />
-    <meta
-      name="copyright"
-      content="All visual assets belong to their respective owners. Used for educational purposes only."
-    />
+
+    <!-- 🧠 Basic Info -->
     <meta name="author" content="Tushar Varshney" />
+    <meta
+      name="description"
+      content="A fan-made Demon Slayer landing page powered by GSAP animations and motion effects."
+    />
     <meta
       name="copyright"
       content="All anime and media assets belong to their respective owners. Educational and fan-made purpose only."
     />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- 🐦 Social Preview -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Demon Slayer | Fan Landing" />
     <meta
@@ -24,22 +28,35 @@
       name="twitter:image"
       content="https://images.alphacoders.com/133/thumb-1920-1338019.webp"
     />
-    <meta name="robots" content="noindex" />
 
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- ⚡ Performance -->
+    <link
+      rel="preload"
+      as="video"
+      href="./assets/THIS IS 4K ANIME (Tanjiro Kamado).mp4"
+      type="video/mp4"
+    />
+    <link rel="icon" href="./assets/fevicon.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- ⚙️ GSAP -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      defer
+    ></script>
   </head>
-  <!-- 🔥 Fire Blade Intro -->
-  <div id="fireIntro" class="fire-intro">
-    <div class="fire-slash"></div>
-    <audio
-      id="slashSound"
-      src="https://cdn.pixabay.com/audio/2022/03/15/audio_25a5b7f7e3.mp3"
-    ></audio>
-  </div>
 
   <body>
+    <!-- 🔥 Fire Blade Intro -->
+    <div id="fireIntro" class="fire-intro">
+      <div class="fire-slash"></div>
+      <audio id="slashSound" src="./assets/sound.mp3"></audio>
+    </div>
+
     <!-- ⚔️ Navbar -->
     <header class="navbar">
       <div class="logo">Demon<span>Slayer</span></div>
@@ -54,6 +71,7 @@
       </div>
     </header>
 
+    <!-- 🎥 Hero Section -->
     <section class="hero" id="hero">
       <div class="video-bg">
         <video autoplay muted loop playsinline>
@@ -67,6 +85,7 @@
       <button class="hero-btn">Enter the Demon World</button>
     </section>
 
+    <!-- 📜 About Section -->
     <section class="about-section" id="about">
       <div class="about-content">
         <h2 class="about-title">About the Demon Slayer Corps</h2>
@@ -88,16 +107,18 @@
         <img
           src="https://wallpaperaccess.com/full/8605250.jpg"
           alt="Demon Slayer Corps"
+          loading="lazy"
         />
       </div>
     </section>
 
+    <!-- 🖼️ Gallery Section -->
     <section class="gallery-section">
-      <h2 class="section-title">Demon slayer corps</h2>
+      <h2 class="section-title">Demon Slayer Corps</h2>
       <div id="gallery" class="gallery-grid"></div>
     </section>
 
-    <!-- 🔥 Image Preview Modal -->
+    <!-- 🔍 Image Preview Modal -->
     <div id="previewModal" class="preview-modal">
       <span id="closeModal">&times;</span>
       <img id="previewImage" src="" alt="Preview" />
@@ -109,90 +130,53 @@
       <div class="carousel-container">
         <div class="enemies-grid">
           <div class="enemy-card">
-            <video
-              loading="lazy"
-              muted
-              loop
-              playsinline
-              preload="none"
-              poster="./assets/placeholder.jpg"
-            >
+            <video preload="none" controls>
               <source src="./assets/muzan.mp4" type="video/mp4" />
             </video>
-
             <h3>Muzan Kibutsuji</h3>
             <p>The progenitor of all demons — cold, cunning, and ruthless.</p>
           </div>
 
           <div class="enemy-card">
-            <video
-              loading="lazy"
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-            >
-              <source src="./assets//akaza.mp4" type="video/mp4" alt="Akaza" />
+            <video preload="none" controls>
+              <source src="./assets/akaza.mp4" type="video/mp4" />
             </video>
-
             <h3>Akaza</h3>
             <p>Upper Moon Three — a martial artist obsessed with strength.</p>
           </div>
 
           <div class="enemy-card">
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-              loading="lazy"
-            >
-              <source src="./assets/doma.mp4" type="video/mp4" alt="Doma" />
+            <video preload="none" controls>
+              <source src="./assets/doma.mp4" type="video/mp4" />
             </video>
-
             <h3>Doma</h3>
             <p>Upper Moon Two — charming on the outside, pure evil inside.</p>
           </div>
 
           <div class="enemy-card">
-            <video autoplay muted loop playsinline>
-              <source
-                src="./assets/kokushibo.mp4"
-                type="video/mp4"
-                preload="none"
-                loading="lazy"
-                alt="kokushibo"
-              />
+            <video preload="none" controls>
+              <source src="./assets/kokushibo.mp4" type="video/mp4" />
             </video>
-
             <h3>Kokushibo</h3>
             <p>
               Upper Moon One — a master swordsman who betrayed his own kind.
             </p>
           </div>
+
           <div class="enemy-card">
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="none"
-              loading="lazy"
-            >
+            <video preload="none" controls>
               <source src="./assets/no4.mp4" type="video/mp4" />
             </video>
             <h3>Hantengu (Upper Moon Four)</h3>
             <p>
-              No. 4 — A demon with multiple personalities, each embodying a
-              deadly sin.
+              A demon with multiple personalities, each embodying a deadly sin.
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ⚠️ Footer -->
     <footer class="credits">
       <p>
         ⚠️ Disclaimer: This project is a fan-made demo created for educational
@@ -201,8 +185,6 @@
         Gotouge, Ufotable, and Aniplex.
       </p>
     </footer>
-
-    <script src="images.js"></script>
     <script src="index.js" defer></script>
   </body>
 </html>
