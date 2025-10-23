@@ -738,3 +738,49 @@ body {
   font-size: 0.9rem;
   border-top: 1px solid rgba(255, 80, 0, 0.3);
 }
+
+/* ADD THIS TO YOUR EXISTING CSS */
+
+/* 🚀 GPU Acceleration for Parallax Elements */
+.video-bg,
+.video-bg video,
+.hero-title,
+.hero-btn,
+.about-image img,
+.gallery-item,
+.enemy-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Remove will-change after animation completes */
+.loaded {
+  will-change: auto;
+}
+
+/* Smooth rendering for parallax sections */
+.hero,
+.about-section,
+.gallery-section,
+.enemies-section {
+  transform-style: preserve-3d;
+}
+
+/* Optimize video rendering */
+.video-bg video {
+  transform: translate3d(0, 0, 0);
+}
+
+/* 📱 Disable animations on reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Keep your existing CSS below this */
