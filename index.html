@@ -29,33 +29,27 @@
       content="https://images.alphacoders.com/133/thumb-1920-1338019.webp"
     />
 
-    <!-- ⚡ Performance -->
-    <link
-      rel="preload"
-      as="video"
-      href="./assets/THIS IS 4K ANIME (Tanjiro Kamado).mp4"
-      type="video/mp4"
-    />
-    <link rel="icon" href="./assets/fevicon.png" type="image/png" />
+    <!-- 🎨 Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://4kwallpapers.com" />
+
+    <!-- ⚡ Critical CSS - Inline or preload -->
+    <link rel="preload" href="styles.css" as="style" />
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- ⚙️ GSAP -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-      defer
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
-      defer
-    ></script>
+    <!-- 🎬 REMOVED: Video preload - Videos should NOT be preloaded on page load -->
+    <!-- This was killing your initial load time -->
+
+    <!-- 🖼️ Favicon -->
+    <link rel="icon" href="./assets/fevicon.png" type="image/png" />
+
+    <!-- ⚙️ GSAP - Moved to end of body with defer -->
   </head>
 
   <body>
-    <!-- 🔥 Fire Blade Intro -->
-    <div id="fireIntro" class="fire-intro">
-      <div class="fire-slash"></div>
-      <audio id="slashSound" src="./assets/sound.mp3"></audio>
-    </div>
+    <!-- 🔥 REMOVED: Fire Blade Intro - This blocks initial page load -->
+    <!-- Consider removing entirely or making it optional/skippable -->
 
     <!-- ⚔️ Navbar -->
     <header class="navbar">
@@ -74,9 +68,16 @@
     <!-- 🎥 Hero Section -->
     <section class="hero" id="hero">
       <div class="video-bg">
-        <video autoplay muted loop playsinline>
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          poster="./assets/video-poster.jpg"
+        >
           <source
-            src="./assets/THIS IS 4K ANIME (Tanjiro Kamado).mp4"
+            src="./assets//THIS IS 4K ANIME (Tanjiro Kamado) (1).mp4"
             type="video/mp4"
           />
         </video>
@@ -105,7 +106,7 @@
       </div>
       <div class="about-image">
         <img
-          src="https://wallpaperaccess.com/full/8605250.jpg"
+          data-src="https://wallpaperaccess.com/full/8605250.jpg"
           alt="Demon Slayer Corps"
           loading="lazy"
         />
@@ -121,7 +122,7 @@
     <!-- 🔍 Image Preview Modal -->
     <div id="previewModal" class="preview-modal">
       <span id="closeModal">&times;</span>
-      <img id="previewImage" src="" alt="Preview" />
+      <img id="previewImage" src="" alt="Preview" loading="lazy" />
     </div>
 
     <!-- 👹 Enemies Section -->
@@ -130,32 +131,32 @@
       <div class="carousel-container">
         <div class="enemies-grid">
           <div class="enemy-card">
-            <video preload="none" controls>
-              <source src="./assets/muzan.mp4" type="video/mp4" />
+            <video preload="none" controls data-src="./assets/muzan.mp4">
+              <source data-src="./assets/muzan.mp4" type="video/mp4" />
             </video>
             <h3>Muzan Kibutsuji</h3>
             <p>The progenitor of all demons — cold, cunning, and ruthless.</p>
           </div>
 
           <div class="enemy-card">
-            <video preload="none" controls>
-              <source src="./assets/akaza.mp4" type="video/mp4" />
+            <video preload="none" controls data-src="./assets/akaza.mp4">
+              <source data-src="./assets/akaza.mp4" type="video/mp4" />
             </video>
             <h3>Akaza</h3>
             <p>Upper Moon Three — a martial artist obsessed with strength.</p>
           </div>
 
           <div class="enemy-card">
-            <video preload="none" controls>
-              <source src="./assets/doma.mp4" type="video/mp4" />
+            <video preload="none" controls data-src="./assets/doma.mp4">
+              <source data-src="./assets/doma.mp4" type="video/mp4" />
             </video>
             <h3>Doma</h3>
             <p>Upper Moon Two — charming on the outside, pure evil inside.</p>
           </div>
 
           <div class="enemy-card">
-            <video preload="none" controls>
-              <source src="./assets/kokushibo.mp4" type="video/mp4" />
+            <video preload="none" controls data-src="./assets/kokushibo.mp4">
+              <source data-src="./assets/kokushibo.mp4" type="video/mp4" />
             </video>
             <h3>Kokushibo</h3>
             <p>
@@ -164,8 +165,8 @@
           </div>
 
           <div class="enemy-card">
-            <video preload="none" controls>
-              <source src="./assets/no4.mp4" type="video/mp4" />
+            <video preload="none" controls data-src="./assets/no4.mp4">
+              <source data-src="./assets/no4.mp4" type="video/mp4" />
             </video>
             <h3>Hantengu (Upper Moon Four)</h3>
             <p>
@@ -181,10 +182,20 @@
       <p>
         ⚠️ Disclaimer: This project is a fan-made demo created for educational
         and portfolio purposes only. All visual and audio assets belong to their
-        respective owners. “Demon Slayer: Kimetsu no Yaiba” is owned by Koyoharu
+        respective owners. "Demon Slayer: Kimetsu no Yaiba" is owned by Koyoharu
         Gotouge, Ufotable, and Aniplex.
       </p>
     </footer>
+
+    <!-- ⚙️ Scripts at bottom with defer for optimal loading -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      defer
+    ></script>
     <script src="index.js" defer></script>
   </body>
 </html>
