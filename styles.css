@@ -9,9 +9,34 @@ html,
 body {
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* Prevent sideways overflow */
+  overflow-x: hidden;
   font-family: "Poppins", sans-serif;
   color: #fff;
+}
+
+/* 🚀 GPU Acceleration for Performance */
+.video-bg,
+.video-bg video,
+.hero-title,
+.hero-btn,
+.about-image img,
+.gallery-item,
+.enemy-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.loaded {
+  will-change: auto;
+}
+
+/* Smooth rendering for parallax sections */
+.hero,
+.about-section,
+.gallery-section,
+.enemies-section {
+  transform-style: preserve-3d;
 }
 
 /* ⚔️ Navbar */
@@ -91,7 +116,7 @@ body {
   transition: all 0.3s ease;
 }
 
-/* 📱 Responsive */
+/* 📱 Responsive Navbar */
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;
@@ -116,7 +141,6 @@ body {
     display: flex;
   }
 
-  /* Transform menu into X */
   .menu-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translateY(8px);
   }
@@ -135,6 +159,7 @@ body {
   box-shadow: 0 0 20px #ff0000;
 }
 
+/* 🎥 Hero Section */
 .hero {
   position: relative;
   height: 100vh;
@@ -147,7 +172,6 @@ body {
   overflow: hidden;
 }
 
-/* 🎥 Background Video */
 .video-bg {
   position: absolute;
   top: 0;
@@ -163,9 +187,10 @@ body {
   height: 100%;
   object-fit: cover;
   filter: brightness(0.55) contrast(1.2) saturate(1.3);
+  transform: translate3d(0, 0, 0);
 }
 
-/* 🔥 Hero Title */
+/* 🔥 Hero Title - FIXED: Removed non-composited animation */
 .hero-title {
   font-size: 5rem;
   font-weight: 900;
@@ -173,19 +198,24 @@ body {
   text-transform: uppercase;
   color: #ff2929;
   text-shadow: 0 0 30px #ff0000, 0 0 60px #ff7b00;
-  animation: glowPulse 3s infinite alternate ease-in-out;
+  /* ✅ REMOVED: animation: glowPulse - This was causing the performance warning */
+  /* Use subtle transform animation instead if needed */
+  animation: subtleGlow 3s infinite alternate ease-in-out;
 }
 
-@keyframes glowPulse {
+/* ✅ GPU-Accelerated Animation - Uses transform instead of text-shadow */
+@keyframes subtleGlow {
   from {
-    text-shadow: 0 0 20px #ff3c00, 0 0 40px #ff7b00;
+    transform: scale(1);
+    opacity: 0.95;
   }
   to {
-    text-shadow: 0 0 50px #ff7b00, 0 0 100px #ffd000;
+    transform: scale(1.02);
+    opacity: 1;
   }
 }
 
-/* 🔘 Button */
+/* 🔘 Hero Button */
 .hero-btn {
   margin-top: 2rem;
   padding: 1rem 2.5rem;
@@ -198,64 +228,15 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   box-shadow: 0 0 30px #ff3c00;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 0 40px #ff6600, 0 0 60px #ff0000;
 }
-/* 🌌 Demon Slayer Corps Section */
-.gallery-section {
-  position: relative;
-  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
-  padding: 5rem 2rem;
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
-}
 
-.gallery-section::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 0, 0, 0.05) 0%,
-    transparent 70%
-  );
-  animation: pulseGlow 8s infinite ease-in-out;
-  z-index: 0;
-}
-
-@keyframes pulseGlow {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.2);
-  }
-}
-
-.section-title {
-  font-size: 2.8rem;
-  margin-bottom: 3rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #ff3300, #ff6600, #ffff00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  z-index: 1;
-}
-
-/* About section */
+/* 📜 About Section */
 .about-section {
   display: flex;
   align-items: center;
@@ -347,6 +328,7 @@ body {
 .about-image img {
   width: 100%;
   max-width: 500px;
+  aspect-ratio: 16 / 9;
   border-radius: 12px;
   box-shadow: 0 0 40px rgba(255, 50, 0, 0.4);
   transition: transform 0.6s ease;
@@ -356,19 +338,57 @@ body {
   transform: scale(1.05);
 }
 
-/* 📱 Responsive */
-@media (max-width: 900px) {
-  .about-section {
-    flex-direction: column;
-    text-align: center;
-  }
+/* 🌌 Gallery Section */
+.gallery-section {
+  position: relative;
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
 
-  .about-image img {
-    max-width: 350px;
+.gallery-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 0, 0, 0.05) 0%,
+    transparent 70%
+  );
+  animation: pulseGlow 8s infinite ease-in-out;
+  z-index: 0;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
   }
 }
 
-/* 🗡️ Gallery Grid Layout */
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #ff3300, #ff6600, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+/* 🗡️ Gallery Grid */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -378,7 +398,6 @@ body {
   position: relative;
 }
 
-/* 🔥 Each Card */
 .gallery-grid .slayer-card,
 .gallery-grid .gallery-item {
   background: rgba(255, 255, 255, 0.05);
@@ -410,7 +429,6 @@ body {
   padding: 0 1rem 1rem;
 }
 
-/* 🌀 Hover Animation */
 .gallery-grid .slayer-card:hover,
 .gallery-grid .gallery-item:hover {
   transform: scale(1.05) rotate(1deg);
@@ -421,22 +439,7 @@ body {
   transform: scale(1.1);
 }
 
-/* 📱 Responsive */
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .gallery-grid img {
-    height: 220px;
-  }
-
-  .gallery-grid p {
-    font-size: 0.85rem;
-  }
-}
-
-/* 🔥 Modal styles */
+/* 🔥 Image Preview Modal */
 .preview-modal {
   display: none;
   position: fixed;
@@ -471,150 +474,7 @@ body {
   color: #ff0000;
 }
 
-/* 🔥 Fire Intro Overlay */
-.fire-intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-/* Fiery slash effect */
-.fire-slash {
-  width: 0%;
-  height: 6px;
-  background: linear-gradient(90deg, #ff0000, #ff7b00, #ffd000);
-  box-shadow: 0 0 60px #ff7b00, 0 0 120px #ff0000, 0 0 200px #ffd000;
-  border-radius: 10px;
-  transform: rotate(-15deg);
-}
-
-/* Ember particles */
-@keyframes ember-float {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-200px) scale(0);
-    opacity: 0;
-  }
-}
-
-.ember {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #ff7b00, transparent);
-  border-radius: 50%;
-  animation: ember-float 2s ease-out forwards;
-}
-
-/* 🌌 Persistent Scroll Embers */
-.scroll-embers {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.scroll-ember {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #ff6600, transparent);
-  border-radius: 50%;
-  opacity: 0.8;
-  filter: blur(1px);
-}
-
-/* 📱 Responsive Design */
-@media (max-width: 1024px) {
-  .hero-title {
-    font-size: 3.5rem;
-  }
-
-  .hero-btn {
-    font-size: 1rem;
-    padding: 0.8rem 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    height: 90vh;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-  }
-
-  .hero-btn {
-    padding: 0.7rem 1.8rem;
-    font-size: 0.95rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .gallery-section {
-    padding: 3rem 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-btn {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.85rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
-/* 👹 Demon Enemies Carousel */
-.enemies-section {
-  padding: 100px 0;
-  background: radial-gradient(circle at center, #100000 0%, #000 100%);
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
-  position: relative;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  color: #ff3333;
-  text-shadow: 0 0 20px #ff0000, 0 0 40px #ff8800;
-  margin-bottom: 40px;
-  letter-spacing: 2px;
-}
-
-.carousel-container {
-  overflow: hidden;
-  width: 100%;
-}
-
-/* === ENEMIES SECTION === */
+/* 👹 Enemies Section */
 .enemies-section {
   background: radial-gradient(circle at center, #0c0c0c 0%, #000 100%);
   color: #fff;
@@ -624,17 +484,6 @@ body {
   overflow: hidden;
 }
 
-.section-title {
-  font-size: 2.8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 800;
-  margin-bottom: 3rem;
-  color: #ff4040;
-  text-shadow: 0 0 20px rgba(255, 64, 64, 0.6);
-}
-
-/* === CAROUSEL CONTAINER === */
 .carousel-container {
   position: relative;
   overflow: hidden;
@@ -663,7 +512,6 @@ body {
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* === CARD STYLE === */
 .enemy-card {
   flex: 0 0 340px;
   background: rgba(30, 30, 30, 0.9);
@@ -704,32 +552,7 @@ body {
   line-height: 1.5;
 }
 
-/* === MOBILE RESPONSIVE === */
-@media (max-width: 768px) {
-  .enemy-card {
-    flex: 0 0 80%;
-  }
-
-  .enemy-card video {
-    height: 320px;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .enemy-card {
-    flex: 0 0 90%;
-  }
-
-  .enemy-card video {
-    height: 360px;
-  }
-}
-
-/* footer */
+/* ⚠️ Footer */
 .credits {
   text-align: center;
   padding: 30px 10%;
@@ -739,40 +562,98 @@ body {
   border-top: 1px solid rgba(255, 80, 0, 0.3);
 }
 
-/* ADD THIS TO YOUR EXISTING CSS */
+/* 📱 Responsive Design */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
 
-/* 🚀 GPU Acceleration for Parallax Elements */
-.video-bg,
-.video-bg video,
-.hero-title,
-.hero-btn,
-.about-image img,
-.gallery-item,
-.enemy-card {
-  will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  .hero-btn {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+  }
 }
 
-/* Remove will-change after animation completes */
-.loaded {
-  will-change: auto;
+@media (max-width: 900px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image img {
+    max-width: 350px;
+  }
 }
 
-/* Smooth rendering for parallax sections */
-.hero,
-.about-section,
-.gallery-section,
-.enemies-section {
-  transform-style: preserve-3d;
+@media (max-width: 768px) {
+  .hero {
+    height: 90vh;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .gallery-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .gallery-grid img {
+    height: 220px;
+  }
+
+  .gallery-grid p {
+    font-size: 0.85rem;
+  }
+
+  .enemy-card {
+    flex: 0 0 80%;
+  }
+
+  .enemy-card video {
+    height: 320px;
+  }
 }
 
-/* Optimize video rendering */
-.video-bg video {
-  transform: translate3d(0, 0, 0);
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .enemy-card {
+    flex: 0 0 90%;
+  }
+
+  .enemy-card video {
+    height: 360px;
+  }
+
+  .enemies-grid {
+    scrollbar-width: thin;
+  }
 }
 
-/* 📱 Disable animations on reduced-motion preference */
+/* 📱 Accessibility - Disable animations on user preference */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -782,5 +663,3 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
-
-/* Keep your existing CSS below this */
