@@ -32,33 +32,25 @@
     <!-- 🎨 Preconnect to external domains -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
-    <link rel="preconnect" href="https://4kwallpapers.com" />
 
     <!-- ⚡ Critical CSS - Inline or preload -->
     <link rel="preload" href="styles.css" as="style" />
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- 🎬 REMOVED: Video preload - Videos should NOT be preloaded on page load -->
-    <!-- This was killing your initial load time -->
-
     <!-- 🖼️ Favicon -->
     <link rel="icon" href="./assets/fevicon.png" type="image/png" />
-
-    <!-- ⚙️ GSAP - Moved to end of body with defer -->
   </head>
 
   <body>
-    <!-- 🔥 REMOVED: Fire Blade Intro - This blocks initial page load -->
-    <!-- Consider removing entirely or making it optional/skippable -->
-
     <!-- ⚔️ Navbar -->
     <header class="navbar">
       <div class="logo">Demon<span>Slayer</span></div>
       <nav class="nav-links">
         <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#styles">Breathing Styles</a>
         <a href="#gallery">Gallery</a>
         <a href="#enemies">Characters</a>
-        <a href="#about">About</a>
       </nav>
       <div class="menu-toggle" id="menuToggle">
         <span></span><span></span><span></span>
@@ -103,6 +95,171 @@
           alt="Demon Slayer Corps"
           loading="lazy"
         />
+      </div>
+    </section>
+
+    <!-- 🌊 Breathing Styles Section - FIXED STRUCTURE -->
+    <section class="breathing-styles" id="styles">
+      <h2 class="section-title">Breathing Styles</h2>
+      <p class="section-subtitle">
+        Master the ancient techniques of the Demon Slayer Corps
+      </p>
+
+      <div class="styles-grid">
+        <!-- Water Breathing -->
+        <div class="style-card" data-style="water">
+          <div class="style-icon">🌊</div>
+          <div class="style-glow water-glow"></div>
+          <h3>Water Breathing</h3>
+          <p class="style-desc">
+            Adaptable and flowing like water, this style focuses on fluid
+            movements and defense.
+          </p>
+          <div class="style-user">Used by: Giyu Tomioka</div>
+          <div class="style-forms">11 Forms</div>
+        </div>
+
+        <!-- Flame Breathing -->
+        <div class="style-card" data-style="flame">
+          <div class="style-icon">🔥</div>
+          <div class="style-glow flame-glow"></div>
+          <h3>Flame Breathing</h3>
+          <p class="style-desc">
+            Fierce and passionate like fire, emphasizing powerful offensive
+            techniques.
+          </p>
+          <div class="style-user">Used by: Kyojuro Rengoku</div>
+          <div class="style-forms">6 Forms</div>
+        </div>
+
+        <!-- Thunder Breathing -->
+        <div class="style-card" data-style="thunder">
+          <div class="style-icon">⚡</div>
+          <div class="style-glow thunder-glow"></div>
+          <h3>Thunder Breathing</h3>
+          <p class="style-desc">
+            Swift and powerful like lightning, focusing on incredible speed and
+            precision.
+          </p>
+          <div class="style-user">Used by: Zenitsu Agatsuma</div>
+          <div class="style-forms">10 Forms</div>
+        </div>
+
+        <!-- Wind Breathing -->
+        <div class="style-card" data-style="wind">
+          <div class="style-icon">💨</div>
+          <div class="style-glow wind-glow"></div>
+          <h3>Wind Breathing</h3>
+          <p class="style-desc">
+            Unpredictable and cutting like wind, utilizing whirlwind-like
+            slashing attacks.
+          </p>
+          <div class="style-user">Used by: Sanemi Shinazugawa</div>
+          <div class="style-forms">8 Forms</div>
+        </div>
+
+        <!-- Stone Breathing -->
+        <div class="style-card" data-style="stone">
+          <div class="style-icon">🪨</div>
+          <div class="style-glow stone-glow"></div>
+          <h3>Stone Breathing</h3>
+          <p class="style-desc">
+            Solid and immovable like stone, the most powerful breathing style.
+          </p>
+          <div class="style-user">Used by: Gyomei Himejima</div>
+          <div class="style-forms">5 Forms</div>
+        </div>
+
+        <!-- Mist Breathing -->
+        <div class="style-card" data-style="mist">
+          <div class="style-icon">🌫️</div>
+          <div class="style-glow mist-glow"></div>
+          <h3>Mist Breathing</h3>
+          <p class="style-desc">
+            Obscuring and unpredictable like mist, confusing enemies with
+            illusions.
+          </p>
+          <div class="style-user">Used by: Muichiro Tokito</div>
+          <div class="style-forms">7 Forms</div>
+        </div>
+
+        <!-- Insect Breathing -->
+        <div class="style-card" data-style="insect">
+          <div class="style-icon">🦋</div>
+          <div class="style-glow insect-glow"></div>
+          <h3>Insect Breathing</h3>
+          <p class="style-desc">
+            Graceful yet deadly, using wisteria poison to eliminate demons with
+            precision strikes.
+          </p>
+          <div class="style-user">Used by: Shinobu Kocho</div>
+          <div class="style-forms">4 Forms</div>
+        </div>
+
+        <!-- Serpent Breathing -->
+        <div class="style-card" data-style="serpent">
+          <div class="style-icon">🐍</div>
+          <div class="style-glow serpent-glow"></div>
+          <h3>Serpent Breathing</h3>
+          <p class="style-desc">
+            Winding and unpredictable like a serpent, with curved slashes that
+            bypass defenses.
+          </p>
+          <div class="style-user">Used by: Obanai Iguro</div>
+          <div class="style-forms">5 Forms</div>
+        </div>
+
+        <!-- Sound Breathing -->
+        <div class="style-card" data-style="sound">
+          <div class="style-icon">🎵</div>
+          <div class="style-glow sound-glow"></div>
+          <h3>Sound Breathing</h3>
+          <p class="style-desc">
+            Flashy and explosive techniques combining physical strength with
+            thunderous shockwaves.
+          </p>
+          <div class="style-user">Used by: Tengen Uzui</div>
+          <div class="style-forms">3 Forms</div>
+        </div>
+
+        <!-- Love Breathing -->
+        <div class="style-card" data-style="love">
+          <div class="style-icon">💗</div>
+          <div class="style-glow love-glow"></div>
+          <h3>Love Breathing</h3>
+          <p class="style-desc">
+            Graceful whip-like techniques utilizing incredible flexibility and
+            unique muscle composition.
+          </p>
+          <div class="style-user">Used by: Mitsuri Kanroji</div>
+          <div class="style-forms">6 Forms</div>
+        </div>
+
+        <!-- Beast Breathing -->
+        <div class="style-card" data-style="beast">
+          <div class="style-icon">🐗</div>
+          <div class="style-glow beast-glow"></div>
+          <h3>Beast Breathing</h3>
+          <p class="style-desc">
+            Wild and aggressive self-taught style with savage dual-sword
+            techniques.
+          </p>
+          <div class="style-user">Used by: Inosuke Hashibira</div>
+          <div class="style-forms">11 Forms</div>
+        </div>
+
+        <!-- Sun Breathing -->
+        <div class="style-card" data-style="sun">
+          <div class="style-icon">☀️</div>
+          <div class="style-glow sun-glow"></div>
+          <h3>Sun Breathing</h3>
+          <p class="style-desc">
+            The original and most powerful breathing style, Hinokami Kagura,
+            from which all others derive.
+          </p>
+          <div class="style-user">Used by: Tanjiro Kamado</div>
+          <div class="style-forms">13 Forms</div>
+        </div>
       </div>
     </section>
 
@@ -159,7 +316,7 @@
 
           <div class="enemy-card">
             <video preload="none" controls data-src="./assets/no4.mp4">
-              <source data-src="./assets/no.4.mp4" type="video/mp4" />
+              <source data-src="./assets/no4.mp4" type="video/mp4" />
             </video>
             <h3>Hantengu (Upper Moon Four)</h3>
             <p>
@@ -169,6 +326,59 @@
         </div>
       </div>
     </section>
+
+    <!-- 🌊 Breathing Style Detail Modal - MOVED OUTSIDE SECTIONS -->
+    <div id="breathingModal" class="breathing-modal">
+      <span class="modal-close" id="closeBreathingModal">&times;</span>
+
+      <div class="breathing-modal-content">
+        <div class="breathing-modal-left">
+          <img id="breathingImage" src="" alt="Character" />
+        </div>
+
+        <div class="breathing-modal-right">
+          <div class="breathing-badge" id="breathingBadge">🌊</div>
+          <h2 id="breathingStyleName">Water Breathing</h2>
+          <h3 id="breathingUser">Giyu Tomioka</h3>
+
+          <div class="breathing-description">
+            <h4>About</h4>
+            <p id="breathingDesc"></p>
+          </div>
+
+          <div class="breathing-forms">
+            <h4>Known Forms</h4>
+            <ul id="breathingFormsList"></ul>
+          </div>
+
+          <div class="breathing-battles">
+            <h4>Notable Battles</h4>
+            <ul id="breathingBattlesList"></ul>
+          </div>
+
+          <div class="breathing-stats">
+            <div class="stat-bar">
+              <span class="stat-label">Offensive Power</span>
+              <div class="stat-progress">
+                <div class="stat-fill" id="statOffensive"></div>
+              </div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-label">Defensive Ability</span>
+              <div class="stat-progress">
+                <div class="stat-fill" id="statDefensive"></div>
+              </div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-label">Speed & Agility</span>
+              <div class="stat-progress">
+                <div class="stat-fill" id="statSpeed"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ⚠️ Footer -->
     <footer class="credits">

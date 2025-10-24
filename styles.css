@@ -653,6 +653,790 @@ body {
   }
 }
 
+/* 🌊 BREATHING STYLES SECTION - FIXED */
+.breathing-styles {
+  position: relative;
+  background: linear-gradient(180deg, #000000 0%, #0a0a14 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+  color: #fff;
+  overflow: visible; /* Changed from hidden */
+  min-height: 600px; /* Ensure section has height */
+}
+
+.breathing-styles::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(100, 100, 255, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.breathing-styles .section-title {
+  position: relative;
+  z-index: 10;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #aaa;
+  margin-top: -1.5rem;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Styles Grid - FIXED */
+.styles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10; /* Higher z-index */
+  padding: 1rem; /* Add padding */
+}
+
+/* Style Card - FIXED */
+.style-card {
+  background: rgba(20, 20, 30, 0.95); /* More opaque */
+  border: 2px solid rgba(255, 255, 255, 0.2); /* More visible */
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  min-height: 350px; /* Ensure cards have height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.style-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.style-card:hover::before {
+  opacity: 1;
+}
+
+.style-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+}
+
+/* Style Icon - FIXED */
+.style-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animated Glow Effects */
+.style-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(40px);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.style-card:hover .style-glow {
+  opacity: 0.6;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Individual Glow Colors */
+.water-glow {
+  background: radial-gradient(circle, #00d4ff, transparent);
+}
+
+.flame-glow {
+  background: radial-gradient(circle, #ff6600, transparent);
+}
+
+.thunder-glow {
+  background: radial-gradient(circle, #ffff00, transparent);
+}
+
+.wind-glow {
+  background: radial-gradient(circle, #00ff88, transparent);
+}
+
+.stone-glow {
+  background: radial-gradient(circle, #888888, transparent);
+}
+
+.mist-glow {
+  background: radial-gradient(circle, #aaaaff, transparent);
+}
+
+/* Style Card Text - FIXED */
+.style-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+}
+
+.style-desc {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.style-user {
+  font-size: 0.9rem;
+  color: #ff8800;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.style-forms {
+  font-size: 0.85rem;
+  color: #aaa;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover Color Effects */
+.style-card[data-style="water"]:hover {
+  border-color: #00d4ff;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+.style-card[data-style="flame"]:hover {
+  border-color: #ff6600;
+  box-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+}
+
+.style-card[data-style="thunder"]:hover {
+  border-color: #ffff00;
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.3);
+}
+
+.style-card[data-style="wind"]:hover {
+  border-color: #00ff88;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+}
+
+.style-card[data-style="stone"]:hover {
+  border-color: #888888;
+  box-shadow: 0 0 30px rgba(136, 136, 136, 0.3);
+}
+
+.style-card[data-style="mist"]:hover {
+  border-color: #aaaaff;
+  box-shadow: 0 0 30px rgba(170, 170, 255, 0.3);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .styles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .style-card {
+    padding: 1.5rem;
+    min-height: 300px;
+  }
+
+  .style-icon {
+    font-size: 3rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* 🔧 BREATHING STYLES FIX - Ensure visibility */
+.style-card {
+  opacity: 1 !important; /* Force visibility until GSAP takes over */
+}
+
+/* Remove this after confirming animations work */
+
+/* 🌊 BREATHING STYLE DETAIL MODAL - FIXED */
+.breathing-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+.breathing-modal.active {
+  display: flex;
+  align-items: flex-start; /* Changed from center */
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Close Button */
+.modal-close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10002;
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 0, 0, 0.3);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-close:hover {
+  background: rgba(255, 0, 0, 0.6);
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Modal Content Container - FIXED */
+.breathing-modal-content {
+  display: grid;
+  grid-template-columns: 400px 1fr; /* Fixed width for left column */
+  gap: 3rem;
+  max-width: 1300px;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 40, 0.98),
+    rgba(10, 10, 30, 0.98)
+  );
+  border-radius: 20px;
+  padding: 3rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9);
+  position: relative;
+  animation: slideUp 0.4s ease;
+  margin-top: 2rem;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Left Side - Character Image - FIXED */
+.breathing-modal-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.breathing-modal-left img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+
+/* Right Side - Details */
+.breathing-modal-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 8rem);
+  padding-right: 1rem;
+}
+
+/* Custom scrollbar */
+.breathing-modal-right::-webkit-scrollbar {
+  width: 8px;
+}
+
+.breathing-modal-right::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.breathing-modal-right::-webkit-scrollbar-thumb {
+  background: rgba(255, 100, 0, 0.5);
+  border-radius: 10px;
+}
+
+.breathing-modal-right::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 100, 0, 0.7);
+}
+
+.breathing-badge {
+  font-size: 4rem;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.breathing-modal-right h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #ff3300, #ff6600, #ffff00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+.breathing-modal-right h3 {
+  font-size: 1.3rem;
+  color: #ff8800;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.breathing-modal-right h4 {
+  font-size: 1.2rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.breathing-description {
+  margin-bottom: 1rem;
+}
+
+.breathing-description p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #ccc;
+}
+
+/* Forms and Battles Lists */
+.breathing-forms,
+.breathing-battles {
+  margin-bottom: 1.5rem;
+}
+
+.breathing-forms ul,
+.breathing-battles ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breathing-forms li,
+.breathing-battles li {
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 0.7rem;
+  border-radius: 10px;
+  border-left: 4px solid;
+  font-size: 0.95rem;
+  color: #ddd;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.breathing-forms li::before,
+.breathing-battles li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.breathing-forms li:hover,
+.breathing-battles li:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(8px);
+}
+
+.breathing-forms li:hover::before,
+.breathing-battles li:hover::before {
+  opacity: 1;
+}
+
+/* Stats Bars */
+.breathing-stats {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-bar {
+  margin-bottom: 1.2rem;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.stat-progress {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff3300, #ff6600, #ff9900);
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0; /* Start at 0 */
+  box-shadow: 0 0 10px rgba(255, 100, 0, 0.5);
+}
+
+/* Color Variations for Different Styles */
+.breathing-modal.water .stat-fill {
+  background: linear-gradient(90deg, #00a8ff, #00d4ff);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.breathing-modal.water .breathing-forms li,
+.breathing-modal.water .breathing-battles li {
+  border-left-color: #00d4ff;
+}
+
+.breathing-modal.flame .stat-fill {
+  background: linear-gradient(90deg, #ff4400, #ff6600, #ff8800);
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+}
+
+.breathing-modal.flame .breathing-forms li,
+.breathing-modal.flame .breathing-battles li {
+  border-left-color: #ff6600;
+}
+
+.breathing-modal.thunder .stat-fill {
+  background: linear-gradient(90deg, #ffdd00, #ffff00);
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+.breathing-modal.thunder .breathing-forms li,
+.breathing-modal.thunder .breathing-battles li {
+  border-left-color: #ffff00;
+}
+
+.breathing-modal.wind .stat-fill {
+  background: linear-gradient(90deg, #00ff66, #00ff88);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.breathing-modal.wind .breathing-forms li,
+.breathing-modal.wind .breathing-battles li {
+  border-left-color: #00ff88;
+}
+
+.breathing-modal.stone .stat-fill {
+  background: linear-gradient(90deg, #666666, #888888, #aaaaaa);
+  box-shadow: 0 0 10px rgba(136, 136, 136, 0.5);
+}
+
+.breathing-modal.stone .breathing-forms li,
+.breathing-modal.stone .breathing-battles li {
+  border-left-color: #888888;
+}
+
+.breathing-modal.mist .stat-fill {
+  background: linear-gradient(90deg, #8888ff, #aaaaff);
+  box-shadow: 0 0 10px rgba(170, 170, 255, 0.5);
+}
+
+.breathing-modal.mist .breathing-forms li,
+.breathing-modal.mist .breathing-battles li {
+  border-left-color: #aaaaff;
+}
+
+/* 📱 Responsive */
+@media (max-width: 1024px) {
+  .breathing-modal-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    margin-top: 0;
+  }
+
+  .breathing-modal-left img {
+    height: 400px;
+  }
+
+  .breathing-modal-right {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .breathing-modal.active {
+    padding: 2rem 1rem;
+  }
+
+  .breathing-modal-content {
+    padding: 1.5rem;
+  }
+
+  .breathing-modal-left img {
+    height: 300px;
+  }
+
+  .breathing-modal-right h2 {
+    font-size: 2rem;
+  }
+
+  .modal-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    width: 45px;
+    height: 45px;
+  }
+
+  .breathing-badge {
+    font-size: 3rem;
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* ===== NEW BREATHING STYLES - ADD THESE ===== */
+
+/* Additional Glow Colors */
+.insect-glow {
+  background: radial-gradient(circle, #dd88ff, transparent);
+}
+
+.serpent-glow {
+  background: radial-gradient(circle, #cc44ff, transparent);
+}
+
+.sound-glow {
+  background: radial-gradient(circle, #ff8844, transparent);
+}
+
+.love-glow {
+  background: radial-gradient(circle, #ff66cc, transparent);
+}
+
+.beast-glow {
+  background: radial-gradient(circle, #88ff44, transparent);
+}
+
+.sun-glow {
+  background: radial-gradient(circle, #ffdd44, transparent);
+}
+
+/* Hover Effects for New Styles */
+.style-card[data-style="insect"]:hover {
+  border-color: #dd88ff;
+  box-shadow: 0 0 30px rgba(221, 136, 255, 0.3);
+}
+
+.style-card[data-style="serpent"]:hover {
+  border-color: #cc44ff;
+  box-shadow: 0 0 30px rgba(204, 68, 255, 0.3);
+}
+
+.style-card[data-style="sound"]:hover {
+  border-color: #ff8844;
+  box-shadow: 0 0 30px rgba(255, 136, 68, 0.3);
+}
+
+.style-card[data-style="love"]:hover {
+  border-color: #ff66cc;
+  box-shadow: 0 0 30px rgba(255, 102, 204, 0.3);
+}
+
+.style-card[data-style="beast"]:hover {
+  border-color: #88ff44;
+  box-shadow: 0 0 30px rgba(136, 255, 68, 0.3);
+}
+
+.style-card[data-style="sun"]:hover {
+  border-color: #ffdd44;
+  box-shadow: 0 0 30px rgba(255, 221, 68, 0.3);
+}
+
+/* Modal Color Themes for New Styles */
+.breathing-modal.insect .stat-fill {
+  background: linear-gradient(90deg, #cc66ff, #dd88ff);
+  box-shadow: 0 0 10px rgba(221, 136, 255, 0.5);
+}
+
+.breathing-modal.insect .breathing-forms li,
+.breathing-modal.insect .breathing-battles li {
+  border-left-color: #dd88ff;
+}
+
+.breathing-modal.serpent .stat-fill {
+  background: linear-gradient(90deg, #aa22ff, #cc44ff);
+  box-shadow: 0 0 10px rgba(204, 68, 255, 0.5);
+}
+
+.breathing-modal.serpent .breathing-forms li,
+.breathing-modal.serpent .breathing-battles li {
+  border-left-color: #cc44ff;
+}
+
+.breathing-modal.sound .stat-fill {
+  background: linear-gradient(90deg, #ff6622, #ff8844);
+  box-shadow: 0 0 10px rgba(255, 136, 68, 0.5);
+}
+
+.breathing-modal.sound .breathing-forms li,
+.breathing-modal.sound .breathing-battles li {
+  border-left-color: #ff8844;
+}
+
+.breathing-modal.love .stat-fill {
+  background: linear-gradient(90deg, #ff44aa, #ff66cc);
+  box-shadow: 0 0 10px rgba(255, 102, 204, 0.5);
+}
+
+.breathing-modal.love .breathing-forms li,
+.breathing-modal.love .breathing-battles li {
+  border-left-color: #ff66cc;
+}
+
+.breathing-modal.beast .stat-fill {
+  background: linear-gradient(90deg, #66ff22, #88ff44);
+  box-shadow: 0 0 10px rgba(136, 255, 68, 0.5);
+}
+
+.breathing-modal.beast .breathing-forms li,
+.breathing-modal.beast .breathing-battles li {
+  border-left-color: #88ff44;
+}
+
+.breathing-modal.sun .stat-fill {
+  background: linear-gradient(90deg, #ffcc22, #ffdd44, #ffee66);
+  box-shadow: 0 0 10px rgba(255, 221, 68, 0.5);
+}
+
+.breathing-modal.sun .breathing-forms li,
+.breathing-modal.sun .breathing-battles li {
+  border-left-color: #ffdd44;
+}
+
 /* 📱 Accessibility - Disable animations on user preference */
 @media (prefers-reduced-motion: reduce) {
   *,
